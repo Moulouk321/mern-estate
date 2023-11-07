@@ -1,42 +1,59 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body{
+  /* background-color: #fcfcdf; */
+  background-color: var(--color-light-purple);
+  font-family: 'Manrope', sans-serif;}
+
+.background{background: var(--color-back);}
+.color-text{color: var(--color-text);}
+.color-text_back{color: var(--color-back);}
+.color-back_text{background-color: var(--color-text);}
+
+/*Colors*/
+.color-green{color: var(--color-green);}
+.color-blue{color: var(--color-blue);}
+.color-dark{color: var(--color-dark);}
+.color-light-purple{color: var(--color-light-purple);}
+.color-pink{color: var(--color-pink);}
+
+/*Background Colors*/
+.back-green{background-color: var(--color-green);}
+.back-blue{background-color: var(--color-blue);}
+.back-dark{background-color: var(--color-dark);}
+.back-light-purple{background-color: var(--color-light-purple);}
+.back-white{background-color: white;}
+.back-pink{background-color: var(--color-pink);}
+
+/*Font Sizes*/
+.fs-40{font-size: 40px;}
+.fs-16{font-size: 16px;}
+
+.main-container{
+  width: 1500px;
+  max-width: 90%;
+  margin: auto;}
+
+.pointer{cursor: pointer;}
+
+@media screen and (max-width:1440px){
+  .fs-40{font-size: 35px;}
+  .fs-20 {font-size: 16px;}
+  /* .fs-16 {font-size: 14px;} */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+@media screen and (max-width:1024px){
+  .fs-40{font-size: 30px;}
+  .fs-20{font-size: 16px;}
+  .fs-16 {font-size: 13px;}
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media screen and (max-width:767px){
+  .fs-40{font-size: 25px;}
+  .fs-20 {font-size: 15px;}
+  .fs-16 {font-size: 14px;}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+@media screen and (max-width:550px){
+  .fs-40{font-size: 20px;}
+  .fs-20 {font-size: 13px;}
+  .fs-16 {font-size: 12px;}
 }

@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+back:#545454
+text:#dcbf7d
+#acabb0
+*/
+
+:root{
+    --color-text: #dcbf7d;
+    --color-back: #545454;
+    --color-green: #8edaa0;
+    --color-blue: #2a4892;
+    --color-dark: #311610;
+    --color-light-purple: #acabb0;
+    --color-pink: #fcfcdf;
+}
