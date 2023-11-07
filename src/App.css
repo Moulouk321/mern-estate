@@ -25,6 +25,8 @@ body{
 
 /*Font Sizes*/
 .fs-40{font-size: 40px;}
+.fs-20{font-size: 20px;}
+.fs-18{font-size: 18px;}
 .fs-16{font-size: 16px;}
 
 .main-container{
@@ -43,17 +45,20 @@ body{
 @media screen and (max-width:1024px){
   .fs-40{font-size: 30px;}
   .fs-20{font-size: 16px;}
+  .fs-18{font-size: 15px;}
   .fs-16 {font-size: 13px;}
 }
 
 @media screen and (max-width:767px){
   .fs-40{font-size: 25px;}
-  .fs-20 {font-size: 15px;}
+  .fs-20 {font-size: 16px;}
+  .fs-18{font-size: 14px;}
   .fs-16 {font-size: 14px;}
 }
 
 @media screen and (max-width:550px){
   .fs-40{font-size: 20px;}
-  .fs-20 {font-size: 13px;}
+  .fs-20 {font-size: 15px;}
+  .fs-18{font-size: 13px;}
   .fs-16 {font-size: 12px;}
 }
