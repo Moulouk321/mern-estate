@@ -1,6 +1,6 @@
 body{
-  /* background-color: #fcfcdf; */
-  background-color: var(--color-light-purple);
+  background-color: var(--color-pink);
+  /* background-color: var(--color-light-purple); */
   font-family: 'Manrope', sans-serif;}
 
 .background{background: var(--color-back);}
