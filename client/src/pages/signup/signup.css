@@ -22,7 +22,7 @@
     .estate__signup{width: 75%;}
 }
 @media screen and (max-width:520px){
-    .estate__signup{width: 90%;}
+    .estate__signup{width: 90%;padding: 20px;}
 }
 
 
