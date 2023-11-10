@@ -15,7 +15,7 @@ export default function Header() {
                     <span className='color-text_back'>Estate</span>
                   </h1>
                 </Link>
-                <form className='flex items-center px-3 py-2 rounded-xl'>
+                <form className='flex items-center px-3 py-2 rounded-xl header-form'>
                   <input type="text" placeholder='Search' className='bg-transparent focus:outline-none w-29 sm:w-64'/>
                   <FaSearch />
                 </form>
@@ -28,9 +28,9 @@ export default function Header() {
             <div className='estate__header-lower shadow-lg'>
               <div className='main-container flex items-center justify-between py-2'>
                 <div className='estate__header-lower_links flex items-center justify-center flex-1'>
-                  <Link to='./' className='fs-18 mx-4 pointer'>Home</Link>
-                  <Link to='./about' className='fs-18 mx-4 pointer'>About</Link>
-                  <Link to='./offers' className='fs-18 mx-4 pointer'>Offers</Link>
+                  <Link to='./' className='fs-18 mx-4 pointer text-white'>Home</Link>
+                  <Link to='./about' className='fs-18 mx-4 pointer text-white'>About</Link>
+                  <Link to='./offers' className='fs-18 mx-4 pointer text-white'>Offers</Link>
                 </div>
               </div>
             </div>

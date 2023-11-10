@@ -1,0 +1,28 @@
+.estate__signup{width: 40%;padding: 40px;box-sizing: border-box;box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;margin: 5rem auto;}
+.estate__signup-content_title{margin: 0 0 30px;padding: 0;}
+.estate__signup-content_form-box{position: relative;}
+.estate__signup-content_form-box input{width: 100%;padding: 10px 0;margin-bottom: 30px;border: none;
+    border-bottom: 1px solid #fff;outline: none;background: transparent;}
+.estate__signup-content_form-box label{position: absolute;top: 0;left: 0;padding: 10px 0;font-size: 16px;
+    color: #fff;pointer-events: none;transition: .5s;}
+.estate__signup-content_form-box input:focus ~ label, .estate__signup-content_form-box input:valid ~ label{
+    top: -20px;left: 0;color: #03e9f4;font-size: 12px;
+}
+.estate__signup-content_form-box_submit{display: flex;justify-content: center;align-items: center;}
+
+
+/* @media screen and (max-width:1440px){
+    .estate__signup{width: 35%;}
+} */
+@media screen and (max-width:1024px){
+    .estate__signup{width: 55%;}
+}
+@media screen and (max-width:767px){
+    .estate__signup{width: 75%;}
+}
+@media screen and (max-width:520px){
+    .estate__signup{width: 90%;}
+}
+
+

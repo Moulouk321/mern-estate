@@ -13,7 +13,9 @@ text:#dcbf7d
     --color-back: #545454;
     --color-green: #8edaa0;
     --color-blue: #2a4892;
-    --color-dark: #311610;
+    --color-light-blue:#03e9f4;
+    --color-dark: #243b55;
+    --color-darkest: #141e30;
     --color-light-purple: #acabb0;
     --color-pink: #fcfcdf;
 }
