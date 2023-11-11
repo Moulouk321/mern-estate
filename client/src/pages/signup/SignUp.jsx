@@ -1,34 +1,77 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './signup.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({})
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const handleChange = (e) => {
+    setFormData(
+      {
+        ...formData, [e.target.id]: e.target.value
+      }
+    )
+  }
+  // console.log(formData)
+  const handleSubmit = async (e) => {
+    e.preventDefault(); //to prevent refreshing the page after clicking submit
+    try {
+      setLoading(true)
+      const res = await fetch('api/auth/signup', 
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      const data = await res.json()
+      if(data.success === false){
+        setLoading(false)
+        setError(data.message)
+        return;
+      }
+      setLoading(false)
+      setError(null)
+      navigate('/sign-in')
+    } catch (error) {
+      setLoading(false)
+      setError(error.message)
+    }
+  }
+
   return (
     <div className='estate__signup back-darkest'>
       {/* <div className='estate__signup-content'> */}
-        <h1 className='estate__signup-content_title text-white text-center font-semibold fs-30'>Sign Up</h1>
-        <form className='estate__signup-content_form'>
-          <div className='estate__signup-content_form-box'>
-            <input type="text" name='username' id="username" className='fs-16 text-white' required/>
-            <label>Username</label>
-          </div>
-          <div className='estate__signup-content_form-box'>
-            <input type="email" name='email' id="email" className='fs-16 text-white' required/>
-            <label>Email</label>
-          </div>
-          <div className='estate__signup-content_form-box'>
-            <input type="password" name='password' id="password" className='fs-16 text-white' required/>
-            <label>Password</label>
-          </div>
-          <div className='estate__signup-content_form-box_submit'>
-            <button disabled className='text-white fs-16 signup-in-button'>Sign Up</button>
-          </div>
-        </form>
+      <h1 className='estate__signup-content_title text-white text-center font-semibold fs-30'>Sign Up</h1>
+      <form onSubmit={handleSubmit} className='estate__signup-content_form'>
+        <div className='estate__signup-content_form-box'>
+          <input type="text" name='username' id="username" className='fs-16 text-white' onChange={handleChange} required  />
+          <label>Username</label>
+        </div>
+        <div className='estate__signup-content_form-box'>
+          <input type="email" name='email' id="email" className='fs-16 text-white' onChange={handleChange} required  />
+          <label>Email</label>
+        </div>
+        <div className='estate__signup-content_form-box'>
+          <input type="password" name='password' id="password" className='fs-16 text-white' onChange={handleChange} required  />
+          <label>Password</label>
+        </div>
+        <div className='estate__signup-content_form-box_submit'>
+          <button disabled={loading} className='text-white fs-16 signup-in-button disabled:text-gray-700'>
+            {loading ? 'loading...' : 'Sign Up'}
+          </button>
+        </div>
+      </form>
       {/* </div> */}
-      <div className='text-center my-2'>
+      <div className='text-center my-2 flex justify-center items-center'>
         <p className='text-white my-1 italic'>Already have an account?</p>
         <Link to='/sign-in' className=' italic color-light-blue'>Sign In</Link>
       </div>
+      {error && <p className='text-red-500 mt-5'> { error } </p>}
     </div>
   )
 }
