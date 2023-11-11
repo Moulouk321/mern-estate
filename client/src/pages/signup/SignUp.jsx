@@ -15,7 +15,7 @@ const SignUp = () => {
       }
     )
   }
-  // console.log(formData)
+ 
   const handleSubmit = async (e) => {
     e.preventDefault(); //to prevent refreshing the page after clicking submit
     try {
@@ -69,7 +69,7 @@ const SignUp = () => {
       {/* </div> */}
       <div className='text-center my-2 flex justify-center items-center'>
         <p className='text-white my-1 italic'>Already have an account?</p>
-        <Link to='/sign-in' className=' italic color-light-blue'>Sign In</Link>
+        <Link to='/sign-in' className=' italic color-light-blue'>Sign in</Link>
       </div>
       {error && <p className='text-red-500 mt-5'> { error } </p>}
     </div>
