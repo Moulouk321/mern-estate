@@ -10,7 +10,8 @@
 .estate__signin-content_form-box input:focus ~ label, .estate__signin-content_form-box input:valid ~ label{
     top: -20px;left: 0;color: #03e9f4;font-size: 12px;
 }
-.estate__signin-content_form-box_submit{display: flex;justify-content: center;align-items: center;}
+.estate__signin-content_form-box_submit, .estate__signin-content_form-box_oauth{display: flex;justify-content: center;
+    align-items: center;margin: 1rem 0;}
 
 
 /* @media screen and (max-width:1440px){

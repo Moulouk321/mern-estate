@@ -41,7 +41,7 @@ body{
 
 .pointer{cursor: pointer;}
 
-.signup-in-button{display: inline-block;width: 200px;line-height: 35px !important;padding: 5px 15px !important;position: relative;opacity: .999;
+.signup-in-button{display: inline-block;width: 100%;line-height: 35px !important;padding: 5px 15px !important;position: relative;opacity: .999;
   border-radius: 3px;margin: 0 0 5px 0;}
 
   .signup-in-button {
@@ -87,7 +87,7 @@ body{
     color:  	var(--color-light-blue);
   }
   .animate, .signup-in-button, .signup-in-button::before, .signup-in-button::after{
-    transition: all 0.5s;
+    transition: all 0.9s;
   }
 
 @media screen and (max-width:1440px){

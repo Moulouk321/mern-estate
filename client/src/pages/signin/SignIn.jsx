@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signInStart, signInFailure, signInSuccess } from '../../redux/user/userSlice'
 import './signin.css'
+import OAuth from '../../components/oauth/OAuth'
 
 const SignIn = () => {
   const [formData, setFormData] = useState({})
@@ -58,6 +59,9 @@ const SignIn = () => {
           <button disabled={loading} className='text-white fs-16 signup-in-button disabled:text-gray-700'>
           {loading ? 'loading...' : 'Sign In'}
           </button>
+        </div>
+        <div className='estate__signin-content_form-box_oauth'>
+          <OAuth />
         </div>
       </form>
       {/* </div> */}
