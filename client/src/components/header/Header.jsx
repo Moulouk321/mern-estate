@@ -1,9 +1,11 @@
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
 import './header.css'
 
 export default function Header() {
+  const { currentUser } = useSelector(state => state.user)
   return (
     <header>
         <div className='estate__header'>
@@ -19,9 +21,15 @@ export default function Header() {
                   <input type="text" placeholder='Search' className='bg-transparent focus:outline-none w-29 sm:w-64'/>
                   <FaSearch />
                 </form>
-                <div className='estate__header-upper_links'>
-                  <Link to='./sign-in' className='fs-18 pointer'>Sign In</Link>
+                <div className='estate__header-upper_links flex items-center'>
                   <Link to='./sign-up' className='fs-18 pointer'>Sign Up</Link>
+                  <Link to='./profile' className='fs-18 pointer'>
+                    { currentUser ? (
+                      <img src={ currentUser.avatar } alt="profile" />
+                    ) :
+                    <span>Sign In</span>
+                    }
+                  </Link>
                 </div>
               </div>
             </div>
