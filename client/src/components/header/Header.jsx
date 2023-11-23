@@ -1,11 +1,14 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import './header.css'
+import Profile from '../../pages/profile/Profile';
 
 export default function Header() {
   const { currentUser } = useSelector(state => state.user)
+  const [openPopup, setOpenPopup] = useState(false);
+  const HandleRemovePopUp = () => setOpenPopup(false);
   return (
     <header>
         <div className='estate__header'>
@@ -23,13 +26,13 @@ export default function Header() {
                 </form>
                 <div className='estate__header-upper_links flex items-center'>
                   <Link to='./sign-up' className='fs-18 pointer'>Sign Up</Link>
-                  <Link to='./profile' className='fs-18 pointer'>
+                  {/* <Link to='./profile' className='fs-18 pointer'> */}
                     { currentUser ? (
-                      <img src={ currentUser.avatar } alt="profile" />
+                      <img src={ currentUser.avatar } alt="profile" onClick={() => setOpenPopup(true)}/>
                     ) :
-                    <span>Sign In</span>
+                    <Link to='./sign-in' className='fs-18 pointer'><span>Sign In</span></Link>
                     }
-                  </Link>
+                  {/* </Link> */}
                 </div>
               </div>
             </div>
@@ -42,6 +45,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
+            <Profile openPopUp={openPopup} closePopUp={HandleRemovePopUp} />
         </div>
     </header>
   )
