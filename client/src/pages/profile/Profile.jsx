@@ -6,6 +6,11 @@ const Profile = ({ openPopUp, closePopUp }) => {
   const { currentUser } =  useSelector((state) => state.user)
   const [enable, setEnable] = useState(true)
 
+  // const handleUpdate = (e) =>{
+  //   enable ? setEnable(false) :
+  //   console.log('Update')
+  // }
+
   const handlelosePopUp = (e) => {
     if (e.target.id === 'ModelContainer') {
       closePopUp();
@@ -38,11 +43,11 @@ const Profile = ({ openPopUp, closePopUp }) => {
             <button className='text-black fs-16 update-button'>
               Update
             </button>
-        </div>
-        <div className="red-links flex justify-between items-center mt-2">
-          <span className='fs-12'>Delete account</span>
-          <span className='fs-12'>Sign out</span>
-        </div>
+          </div>
+          <div className="red-links flex justify-between items-center mt-2">
+            <span className='fs-12'>Delete account</span>
+            <span className='fs-12'>Sign out</span>
+          </div>
         </form>
       </div>
     </div>

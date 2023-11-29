@@ -69,8 +69,8 @@
               transform: translateY(0);
     }
     100% {
-      -webkit-transform: translateY(-100px);
-              transform: translateY(-100px);
+      -webkit-transform: translateY(-50px);
+              transform: translateY(-50px);
     }
   }
   @keyframes slide-top {
@@ -79,8 +79,10 @@
               transform: translateY(0);
     }
     100% {
-      -webkit-transform: translateY(-100px);
-              transform: translateY(-100px);
+      -webkit-transform: translateY(-50px);
+              transform: translateY(-50px);
     }
   }
+
+
   
