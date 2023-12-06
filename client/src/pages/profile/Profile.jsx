@@ -2,16 +2,24 @@ import { React, useState, useRef, useEffect } from 'react'
 import { app } from '../../firebase'
 import { useSelector } from 'react-redux'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import {
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure
+} from '../../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
 import './profile.css'
 
 const Profile = ({ openPopUp, closePopUp }) => {
-  const { currentUser } = useSelector((state) => state.user)
-  const [enable, setEnable] = useState(true)
+  const { currentUser, loading, error } = useSelector((state) => state.user)
+  // const [enable, setEnable] = useState(true)
   const [fileUploadError, setFileUploadError] = useState(false)
   const fileRef = useRef(null)
   const [file, setFile] = useState(undefined)
   const [filePerc, setFilePerc] = useState(0)
   const [formData, setFormData] = useState({});
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const dispatch = useDispatch();
 
   // const handleUpdate = (e) =>{
   //   enable ? setEnable(false) :
@@ -54,6 +62,34 @@ const Profile = ({ openPopUp, closePopUp }) => {
 
   if (openPopUp !== true) return null
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value })
+  }
+
+  const handleSubmit = async(e) => {
+    e.preventDefault() //preventing the default action of the submit which is refereshing
+    try {
+      dispatch(updateUserStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+       const data = await res.json();
+      if (data.success === false) {
+        dispatch(updateUserFailure(data.message));
+        return;
+      }
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
+
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
+  }
+
   return (
     <div className='main-container'>
       <div
@@ -61,7 +97,7 @@ const Profile = ({ openPopUp, closePopUp }) => {
         onClick={handlelosePopUp}
         className='fixed inset-0 flex justify-end items-center bg-opacity-20 main-container'>
         <div className=' popup bg-blue-50 w-full md:w-1/3 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5 slide-top'>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className='w-full flex flex-col p-3 justify-center items-center'>
               <input onChange={(e) => setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*' />
               <img onClick={() => fileRef.current.click()} src={ formData.avatar || currentUser.avatar}
@@ -77,30 +113,34 @@ const Profile = ({ openPopUp, closePopUp }) => {
                     : (
                       ""
                     )
-
               }
               </p>
               <p className='username fs-18'> Hi {currentUser.username}!</p>
             </div>
             <div className='estate__popup-content'>
-              <input type="text" disabled={enable} name='username' id="username" value={currentUser.username}
-                className='fs-16 text-black' required />
+              <input type="text" name='username' id="username" defaultValue={currentUser.username}
+                className='fs-16 text-black' required onChange={handleChange} />
               <label>Username</label>
             </div>
             <div className='estate__popup-content'>
-              <input type="email" disabled={enable} name='email' id="email" value={currentUser.email} className='fs-16 text-black' required />
+              <input type="email" name='email' id="email" defaultValue={currentUser.email}
+                className='fs-16 text-black' required onChange={handleChange} />
               <label>Email</label>
             </div>
             <div className='popup-content_submit'>
-              <button className='text-black fs-16 update-button'>
-                Update
+              <button disabled={loading} className='text-black fs-16 update-button disabled:text-gray-700'>
+                {loading ? 'Loading...' : 'Update'}
               </button>
             </div>
-            <div className="red-links flex justify-between items-center mt-2">
-              <span className='fs-12'>Delete account</span>
-              <span className='fs-12'>Sign out</span>
-            </div>
           </form>
+          <div className="red-links flex justify-between items-center mt-2">
+            <span className='fs-12'>Delete account</span>
+            <span className='fs-12'>Sign out</span>
+          </div>
+          <p className='text-red-700 text-sm mt-3'>{error ? error : ''}</p>
+          <p className='text-green-700 text-sm mt-3'>
+            {updateSuccess ? 'User is updated successfully' : ''}
+          </p>
         </div>
       </div>
     </div>
