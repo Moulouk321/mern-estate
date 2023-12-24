@@ -5,13 +5,17 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/
 import {
   updateUserStart,
   updateUserSuccess,
-  updateUserFailure
+  updateUserFailure,
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
 } from '../../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import './profile.css'
 
 const Profile = ({ openPopUp, closePopUp }) => {
-  const { currentUser, loading, error } = useSelector((state) => state.user)
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   // const [enable, setEnable] = useState(true)
   const [fileUploadError, setFileUploadError] = useState(false)
   const fileRef = useRef(null)
@@ -19,6 +23,7 @@ const Profile = ({ openPopUp, closePopUp }) => {
   const [filePerc, setFilePerc] = useState(0)
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   // const handleUpdate = (e) =>{
@@ -90,6 +95,26 @@ const Profile = ({ openPopUp, closePopUp }) => {
     }
   }
 
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+      closePopUp();
+      navigate('/sign-in')
+      
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
+
   return (
     <div className='main-container'>
       <div
@@ -134,7 +159,7 @@ const Profile = ({ openPopUp, closePopUp }) => {
             </div>
           </form>
           <div className="red-links flex justify-between items-center mt-2">
-            <span className='fs-12'>Delete account</span>
+            <span onClick={handleDeleteUser} className='fs-12'>Delete account</span>
             <span className='fs-12'>Sign out</span>
           </div>
           <p className='text-red-700 text-sm mt-3'>{error ? error : ''}</p>
