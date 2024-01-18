@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { app } from '../../firebase'
 import { useSelector } from 'react-redux'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import PropTypes from 'prop-types';
 import {
   updateUserStart,
   updateUserSuccess,
@@ -27,10 +28,7 @@ const Profile = ({ openPopUp, closePopUp }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
-  // const handleUpdate = (e) =>{
-  //   enable ? setEnable(false) :
-  //   console.log('Update')
-  // }
+
 
   useEffect(() => {
     if (file) {
@@ -49,6 +47,7 @@ const Profile = ({ openPopUp, closePopUp }) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         setFilePerc(Math.round(progress))
       },
+      // eslint-disable-next-line no-unused-vars
       (error) => {
         setFileUploadError(true);
       },
@@ -129,7 +128,7 @@ const Profile = ({ openPopUp, closePopUp }) => {
       closePopUp();
 
     } catch (error) {
-      dispatch(deleteUserFailure(data.message));
+      dispatch(deleteUserFailure(error.message));
     }
   }
 
@@ -192,5 +191,10 @@ const Profile = ({ openPopUp, closePopUp }) => {
     </div>
   )
 }
+
+Profile.propTypes = {
+  openPopUp: PropTypes.bool.isRequired, 
+  closePopUp: PropTypes.func.isRequired,
+};
 
 export default Profile

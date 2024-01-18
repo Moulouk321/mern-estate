@@ -35,41 +35,41 @@ export default function CreateListing() {
                 <input
                   type='checkbox'
                   id='sale'
-                  className='w-5 fs-16'
+                  className='w-5'
                 />
-                <span>Sell</span>
+                <span className='fs-16'>Sell</span>
               </div>
               <div className='flex gap-2'>
                 <input
                   type='checkbox'
                   id='rent'
-                  className='w-5 fs-16'
+                  className='w-5'
                 />
-                <span>Rent</span>
+                <span className='fs-16'>Rent</span>
               </div>
               <div className='flex gap-2'>
                 <input
                   type='checkbox'
                   id='parking'
-                  className='w-5 fs-16'
+                  className='w-5'
                 />
-                <span>Parking spot</span>
+                <span className='fs-16'>Parking spot</span>
               </div>
               <div className='flex gap-2'>
                 <input
                   type='checkbox'
                   id='furnished'
-                  className='w-5 fs-16'
+                  className='w-5'
                 />
-                <span>Furnished</span>
+                <span className='fs-16'>Furnished</span>
               </div>
               <div className='flex gap-2'>
                 <input
                   type='checkbox'
                   id='offer'
-                  className='w-5 fs-16'
+                  className='w-5'
                 />
-                <span>Offer</span>
+                <span className='fs-16'>Offer</span>
               </div>
             </div>
             <div className='flex flex-wrap gap-6 numbers'>
@@ -126,9 +126,9 @@ export default function CreateListing() {
             </div>
           </div>
           <div className='flex flex-col gap-4 right-part'>
-          <p className='font-semibold'>
+          <p className='font-semibold fs-16'>
             Images:
-            <span className='font-normal text-gray-600 ml-2'>
+            <span className='font-normal text-gray-600 ml-2 fs-16'>
               The first image will be the cover (max 6)
             </span>
           </p>
@@ -142,7 +142,7 @@ export default function CreateListing() {
             />
             <button
               type='button'
-              className='p-3 text-green-700 border border-green-700 rounded hover:shadow-lg disabled:opacity-80'
+              className='p-3 fs-16 text-green-700 border border-green-700 rounded hover:shadow-lg disabled:opacity-80'
             >Upload
             </button>
           </div>
