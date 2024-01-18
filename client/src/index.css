@@ -10,7 +10,8 @@ text:#dcbf7d
 
 :root{
     --color-text: #dcbf7d;
-    --color-back: #545454;
+    --color-logo: #545454;
+    --color-back: #e8f4f8;
     --color-green: #8edaa0;
     --color-blue: #2a4892;
     --color-light-blue:#03e9f4;
@@ -18,4 +19,5 @@ text:#dcbf7d
     --color-darkest: #141e30;
     --color-light-purple: #acabb0;
     --color-pink: #fcfcdf;
+    --color-basic-text: #000
 }

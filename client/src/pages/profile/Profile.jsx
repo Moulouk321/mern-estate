@@ -1,4 +1,4 @@
-import { React, useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { app } from '../../firebase'
 import { useSelector } from 'react-redux'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
@@ -12,7 +12,7 @@ import {
   signOutUserStart,
 } from '../../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './profile.css'
 
 const Profile = ({ openPopUp, closePopUp }) => {
@@ -138,8 +138,8 @@ const Profile = ({ openPopUp, closePopUp }) => {
       <div
         id='ModelContainer'
         onClick={handlelosePopUp}
-        className='fixed inset-0 flex justify-end items-center bg-opacity-20 main-container'>
-        <div className=' popup bg-blue-50 w-full md:w-1/3 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5 slide-top'>
+        className='fixed flex justify-end items-center bg-opacity-20 main-container'>
+        <div className=' popup bg-blue-50 w-full md:w-1/3 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5 scale-up-center'>
           <form onSubmit={handleSubmit}>
             <div className='w-full flex flex-col p-3 justify-center items-center'>
               <input onChange={(e) => setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*' />
@@ -175,6 +175,9 @@ const Profile = ({ openPopUp, closePopUp }) => {
                 {loading ? 'Loading...' : 'Update'}
               </button>
             </div>
+              <Link to={"create-listing"} className='flex justify-center text-black fs-16 update-button disabled:text-gray-700'>
+                Create Listing
+              </Link>
           </form>
           <div className="red-links flex justify-between items-center mt-2">
             <span onClick={handleDeleteUser} className='fs-12'>Delete account</span>

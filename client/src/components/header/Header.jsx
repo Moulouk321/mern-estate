@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux'
@@ -28,7 +28,10 @@ export default function Header() {
                   <Link to='./sign-up' className='fs-18 pointer'>Sign Up</Link>
                   {/* <Link to='./profile' className='fs-18 pointer'> */}
                     { currentUser ? (
-                      <img src={ currentUser.avatar } alt="profile" onClick={() => setOpenPopup(true)}/>
+                      <img src={ currentUser.avatar } alt="profile" onClick={() => 
+                        !openPopup ?
+                        setOpenPopup(true) : setOpenPopup(false)
+                      }/>
                     ) :
                     <Link to='./sign-in' className='fs-18 pointer'><span>Sign In</span></Link>
                     }
@@ -39,9 +42,9 @@ export default function Header() {
             <div className='estate__header-lower shadow-lg'>
               <div className='main-container flex items-center justify-between py-2'>
                 <div className='estate__header-lower_links flex items-center justify-center flex-1'>
-                  <Link to='./' className='fs-18 mx-4 pointer text-white'>Home</Link>
-                  <Link to='./about' className='fs-18 mx-4 pointer text-white'>About</Link>
-                  <Link to='./offers' className='fs-18 mx-4 pointer text-white'>Offers</Link>
+                  <Link to='./' className='fs-18 mx-4 pointer color-basic-text'>Home</Link>
+                  <Link to='./about' className='fs-18 mx-4 pointer color-basic-text'>About</Link>
+                  <Link to='./offers' className='fs-18 mx-4 pointer color-basic-text'>Offers</Link>
                 </div>
               </div>
             </div>
