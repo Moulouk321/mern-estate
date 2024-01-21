@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute'
 import CreateListing from './pages/createListing/CreateListing'
 import UpdateListing from './pages/updateListing/UpdateListing'
 
+
 const App = () => {
   return (
     <BrowserRouter>

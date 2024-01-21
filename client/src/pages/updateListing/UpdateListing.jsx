@@ -28,10 +28,11 @@ export default function UpdateListing() {
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const listingId = params.listingId;
   
   useEffect(() => {
     const fetchListing = async () => {
-      const listingId = params.listingId;
+    //   const listingId = params.listingId;
       const res = await fetch(`/api/listing/get/${listingId}`);
       const data = await res.json();
       if (data.success === false) {
@@ -44,7 +45,7 @@ export default function UpdateListing() {
 
     fetchListing();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [listingId]);
 
 
   const handleImageSubmit = (e) => {
