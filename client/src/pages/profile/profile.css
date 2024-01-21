@@ -8,7 +8,18 @@
   background: transparent
 }
 .username{margin: 3px 0;}
-.popup{padding: 12px 25px;position: relative;}
+.popup {
+  padding: 12px 25px;
+  position: relative;
+  height: 450px;
+  overflow-y: scroll;
+  border: 1px solid #000;
+  background-color: var(--color-back);
+  border-radius: 20px;
+  box-shadow: -7px 6px 5px 0px rgba(0,0,0,0.75) !important;
+  -webkit-box-shadow: -7px 6px 5px 0px rgba(0,0,0,0.75) !important;
+  -moz-box-shadow: -7px 6px 5px 0px rgba(0,0,0,0.75) !important;
+}
 .estate__popup-content{position: relative;}
 .estate__popup-content input{width: 100%;padding: 10px 0;margin-bottom: 30px;border: none;
   border-bottom: 1px solid #000;outline: none;background: transparent;}

@@ -25,10 +25,12 @@ const Profile = ({ openPopUp, closePopUp }) => {
   const [filePerc, setFilePerc] = useState(0)
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [showListingsError, setShowListingsError] = useState(false)
+  const [userListings, setUserListings] = useState([])
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
-
+  console.log(showListingsError, userListings)
 
   useEffect(() => {
     if (file) {
@@ -132,13 +134,47 @@ const Profile = ({ openPopUp, closePopUp }) => {
     }
   }
 
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`)
+      const data = await res.json()
+      if (data.success === false) {
+        setShowListingsError(true)
+        return;
+      }
+      setUserListings(data)
+    } catch (error) {
+      setShowListingsError(true)
+    }
+  }
+
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json()
+      if (data.success === false) {
+        console.log(data.message)
+        return;
+      }
+
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   return (
     <div className='main-container'>
       <div
         id='ModelContainer'
         onClick={handlelosePopUp}
         className='fixed flex justify-end items-center bg-opacity-20 main-container'>
-        <div className=' popup bg-blue-50 w-full md:w-1/3 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5 scale-up-center'>
+        <div className=' popup w-full md:w-1/3 lg:1/3 shadow-inner border-e-emerald-600 rounded-lg py-5 scale-up-center'>
           <form onSubmit={handleSubmit}>
             <div className='w-full flex flex-col p-3 justify-center items-center'>
               <input onChange={(e) => setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*' />
@@ -186,6 +222,52 @@ const Profile = ({ openPopUp, closePopUp }) => {
           <p className='text-green-700 text-sm mt-3'>
             {updateSuccess ? 'User is updated successfully' : ''}
           </p>
+
+          <button onClick={handleShowListings} className='text-green-700 fs-16 w-full'>
+            Show my Listings
+          </button>
+
+          <p className='text-red-700 mt-5 fs-16'>
+            {showListingsError ? 'Error showing listings' : ''}
+          </p>
+
+          {userListings && userListings.length > 0 && (
+            <div className='flex flex-col gap-4'>
+              <h1 className='text-center mt-7 fs-16 font-semibold'>
+                Your Listings
+              </h1>
+              {userListings.map((listing) => (
+                <div
+                  key={listing._id}
+                  className='border rounded-lg p-3 flex justify-between items-center gap-4'
+                >
+                  <Link to={`/listing/${listing._id}`}>
+                    <img
+                      src={listing.imageUrls[0]}
+                      alt='listing cover'
+                      className='h-16 w-16 object-contain'
+                    />
+                  </Link>
+                  <Link
+                    className='text-slate-700 font-semibold  hover:underline truncate flex-1'
+                    to={`/listing/${listing._id}`}
+                  >
+                    <p>{listing.name}</p>
+                  </Link>
+
+                  <div className='flex flex-col item-center'>
+                    <button
+                      onClick={() => handleListingDelete(listing._id)}
+                      className='text-red-700 fs-16'>Delete</button>
+                    <Link to={`/update-listing/${listing._id}`}>
+                      <button className='text-green-700 fs-16'>Edit</button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+        </div>
+      )}
+
         </div>
       </div>
     </div>
