@@ -30,12 +30,11 @@ const Profile = ({ openPopUp, closePopUp }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
-  console.log(showListingsError, userListings)
-
   useEffect(() => {
     if (file) {
       handleFileUpload(file);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
   const handleFileUpload = (file) => {
@@ -160,9 +159,7 @@ const Profile = ({ openPopUp, closePopUp }) => {
         return;
       }
 
-      setUserListings((prev) =>
-        prev.filter((listing) => listing._id !== listingId)
-      );
+      setUserListings((prev) => prev.filter((listing) => listing._id !== listingId));
     } catch (error) {
       console.log(error.message)
     }

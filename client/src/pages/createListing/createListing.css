@@ -3,7 +3,7 @@
 .createListingForm .inputs{flex: 1;}
 .createListingForm .inputs .form-box{position: relative;}
 .createListingForm .inputs .form-box input, .createListingForm .inputs .form-box textarea
-    {width: 100%;padding: 10px 0;border: 1px solid var(--color-dark);
+    {width: 100%;padding: 10px 8px;border: 1px solid var(--color-dark);
     outline: none;background: transparent;border-radius: 5px;}
 .createListingForm .inputs .form-box label{position: absolute;top: 0;left: 0;padding: 11px;
     color: var(--color-dark);pointer-events: none;transition: .5s;}
