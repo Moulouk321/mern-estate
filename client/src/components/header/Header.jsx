@@ -57,21 +57,21 @@ export default function Header() {
                   <input
                   type="text"
                   placeholder='Search'
-                  className='bg-transparent focus:outline-none w-29 sm:w-64'
+                  className='bg-transparent focus:outline-none w-29 sm:w-64 search-input'
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   />
                   <button><FaSearch /></button>
                 </form>
                 <div className='estate__header-upper_links flex items-center'>
-                  <div className='flex items-center justify-between py-2'>
+                  <div className='flex items-center justify-between links-desktop py-2'>
                     <div className='estate__header-lower_links flex items-center justify-center flex-1'>
                       <Link to='./' className='fs-18 pointer color-basic-text'>Home</Link>
                       <Link to='./about' className='fs-18 pointer color-basic-text'>About</Link>
                       {/* <Link to='./offers' className='fs-18 pointer color-basic-text'>Offers</Link> */}
                     </div>
                   </div>
-                  <Link to='./sign-up' className='fs-18 pointer'>Sign Up</Link>
+                  {/* <Link to='./sign-up' className='fs-18 pointer'>Sign Up</Link> */}
                   {/* <Link to='./profile' className='fs-18 pointer'> */}
                     { currentUser ? (
                       <img src={ currentUser.avatar } alt="profile" onClick={() => 
@@ -85,7 +85,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            {/* <div className='estate__header-lower shadow-lg'>
+            <div className='estate__header-lower-mobile shadow-lg'>
               <div className='main-container flex items-center justify-between py-2'>
                 <div className='estate__header-lower_links flex items-center justify-center flex-1'>
                   <Link to='./' className='fs-18 mx-4 pointer color-basic-text'>Home</Link>
@@ -93,7 +93,7 @@ export default function Header() {
                   <Link to='./offers' className='fs-18 mx-4 pointer color-basic-text'>Offers</Link>
                 </div>
               </div>
-            </div> */}
+            </div>
             <Profile openPopUp={openPopup} closePopUp={HandleRemovePopUp} />
         </div>
     </header>

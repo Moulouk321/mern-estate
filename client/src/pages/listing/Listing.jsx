@@ -99,7 +99,7 @@ export default function Listing() {
                 </p>
                 {listing.offer && (
                   <p className='non-clickable-button fs-16 text-white text-center'>
-                    ${+listing.regularPrice - +listing.discountPrice} Off
+                    ${+listing.regularPrice - +listing.discountPrice} discount
                   </p>
                 )}
               </div>

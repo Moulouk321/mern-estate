@@ -1,0 +1,17 @@
+.search{width: 100%;padding: 8px;border: 1px solid var(--color-dark);
+    outline: none;background: transparent;border-radius: 10px;}
+.big-cont{padding: 50px 0;display: flex;}
+.left-part{padding: 0 30px 0 0;flex: 0.6;}
+.right-part{padding: 10px 0 0 30px;}
+.checkbox{width: 18px;}
+.card{width: 48% !important;}
+.sort_order{background-color: transparent;border: 1px solid #000;}
+
+
+@media screen and (max-width:930px){
+    .card{width: 100% !important;}
+}
+@media screen and (max-width:767px){
+    .big-cont{flex-direction: column;}
+    .left-part, .right-part{padding: 0;border-right: none !important}
+}

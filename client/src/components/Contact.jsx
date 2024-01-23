@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 export default function Contact({ listing }) {
   const [landlord, setLandlord] = useState(null);
