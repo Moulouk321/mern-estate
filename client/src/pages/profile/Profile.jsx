@@ -274,6 +274,6 @@ const Profile = ({ openPopUp, closePopUp }) => {
 Profile.propTypes = {
   openPopUp: PropTypes.bool.isRequired, 
   closePopUp: PropTypes.func.isRequired,
-};
+}
 
 export default Profile
