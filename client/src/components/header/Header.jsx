@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux'
@@ -9,10 +9,24 @@ export default function Header() {
   const { currentUser } = useSelector(state => state.user)
   const [openPopup, setOpenPopup] = useState(false);
   const HandleRemovePopUp = () => setOpenPopup(false);
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const shouldFixHeader = scrollPosition > 100;
+      setIsHeaderFixed(shouldFixHeader);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
-    <header>
+    <header className={isHeaderFixed ? 'fixed-header' : ''}>
         <div className='estate__header'>
-            <div className='estate__header-upper shadow-md back-white py-1'>
+            <div className='estate__header-upper shadow-md back-original py-1'>
               <div className='main-container flex items-center justify-between'>
                 <Link to='./'>
                   <h1 className='estate__header-upper_logo font-bold fs-40 flex justify-start'>
@@ -25,6 +39,13 @@ export default function Header() {
                   <FaSearch />
                 </form>
                 <div className='estate__header-upper_links flex items-center'>
+                  <div className='flex items-center justify-between py-2'>
+                    <div className='estate__header-lower_links flex items-center justify-center flex-1'>
+                      <Link to='./' className='fs-18 pointer color-basic-text'>Home</Link>
+                      <Link to='./about' className='fs-18 pointer color-basic-text'>About</Link>
+                      {/* <Link to='./offers' className='fs-18 pointer color-basic-text'>Offers</Link> */}
+                    </div>
+                  </div>
                   <Link to='./sign-up' className='fs-18 pointer'>Sign Up</Link>
                   {/* <Link to='./profile' className='fs-18 pointer'> */}
                     { currentUser ? (
@@ -39,7 +60,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <div className='estate__header-lower shadow-lg'>
+            {/* <div className='estate__header-lower shadow-lg'>
               <div className='main-container flex items-center justify-between py-2'>
                 <div className='estate__header-lower_links flex items-center justify-center flex-1'>
                   <Link to='./' className='fs-18 mx-4 pointer color-basic-text'>Home</Link>
@@ -47,7 +68,7 @@ export default function Header() {
                   <Link to='./offers' className='fs-18 mx-4 pointer color-basic-text'>Offers</Link>
                 </div>
               </div>
-            </div>
+            </div> */}
             <Profile openPopUp={openPopup} closePopUp={HandleRemovePopUp} />
         </div>
     </header>

@@ -1,3 +1,4 @@
+.fixed-header{position: fixed;z-index: 3;width: 100%;}
 .estate__header-upper_logo{flex: 0.2;text-shadow: 2px 2px 2px black;}
 .header-form{border: 1px solid var(--color-dark);}
 .estate__header-upper_links a{margin-right: 1rem;}

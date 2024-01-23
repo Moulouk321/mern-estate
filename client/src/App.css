@@ -25,6 +25,7 @@ body{
 
 /*Background Colors*/
 .back-green{background-color: var(--color-green);}
+.back-original{background-color: var(--color-back);}
 .back-blue{background-color: var(--color-blue);}
 .back-dark{background-color: var(--color-dark);}
 .back-darkest{background-color: var(--color-darkest);}
