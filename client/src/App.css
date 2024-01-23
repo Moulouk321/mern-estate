@@ -39,13 +39,15 @@ body{
 .fs-20{font-size: 20px;}
 .fs-18{font-size: 18px;}
 .fs-16{font-size: 16px;}
+.fs-14{font-size: 14px;}
 .fs-12{font-size: 12px;}
 
+.line-h-20{line-height: 20px;}
+
 .cursor{cursor: pointer;}
-.main-container{
-  width: 1500px;
-  max-width: 90%;
-  margin: auto;}
+.main-container{width: 1500px;max-width: 90%;margin: auto;}
+  
+.container-medium{width: 1000px;max-width: 90%;margin: auto;}
 
 .pointer{cursor: pointer;}
 

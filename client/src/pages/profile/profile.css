@@ -1,7 +1,7 @@
 #ModelContainer img{width: 50px;height: 50px;object-fit: cover;margin: 3px 0;}
 #ModelContainer {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   justify-content: flex-end;
   align-items: center;

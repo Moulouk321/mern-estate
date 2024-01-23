@@ -1,0 +1,5 @@
+/* .swiper-slide>div{background-position: inherit !important;} */
+/* .swiper-slide>div{background-size: contain !important;} */
+.swiper-button-prev::after, .swiper-button-next::after{font-size: 25px;}
+.swiper-button-prev, .swiper-button-next{color: #fff;}
+.non-clickable-button{padding: 3px 8px;background-color: var(--color-darkest);border-radius: 5px;}
