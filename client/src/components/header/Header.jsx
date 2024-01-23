@@ -1,28 +1,47 @@
 import { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import './header.css'
 import Profile from '../../pages/profile/Profile';
 
 export default function Header() {
   const { currentUser } = useSelector(state => state.user)
-  const [openPopup, setOpenPopup] = useState(false);
-  const HandleRemovePopUp = () => setOpenPopup(false);
-  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+  const navigate = useNavigate()
+  const [searchTerm, setSearchTerm] = useState('')
+  const [openPopup, setOpenPopup] = useState(false)
+  const HandleRemovePopUp = () => setOpenPopup(false)
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const shouldFixHeader = scrollPosition > 100;
-      setIsHeaderFixed(shouldFixHeader);
-    };
+      const scrollPosition = window.scrollY
+      const shouldFixHeader = scrollPosition > 100
+      setIsHeaderFixed(shouldFixHeader)
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
+
+    const urlParams = new URLSearchParams(location.search)
+    const searchTermFromUrl = urlParams.get('searchTerm')
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl)
+    }
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('searchTerm', searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  }
+
   return (
     <header className={isHeaderFixed ? 'fixed-header' : ''}>
         <div className='estate__header'>
@@ -34,9 +53,15 @@ export default function Header() {
                     <span className='color-text_back'>Estate</span>
                   </h1>
                 </Link>
-                <form className='flex items-center px-3 py-2 rounded-xl header-form'>
-                  <input type="text" placeholder='Search' className='bg-transparent focus:outline-none w-29 sm:w-64'/>
-                  <FaSearch />
+                <form onSubmit={handleSubmit} className='flex items-center px-3 py-2 rounded-xl header-form'>
+                  <input
+                  type="text"
+                  placeholder='Search'
+                  className='bg-transparent focus:outline-none w-29 sm:w-64'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <button><FaSearch /></button>
                 </form>
                 <div className='estate__header-upper_links flex items-center'>
                   <div className='flex items-center justify-between py-2'>
