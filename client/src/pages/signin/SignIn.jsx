@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { signInStart, signInFailure, signInSuccess } from '../../redux/user/userSlice'
 import './signin.css'
 import OAuth from '../../components/oauth/OAuth'
+import Header from '../../components/header/Header'
 
 const SignIn = () => {
   const [formData, setFormData] = useState({})
@@ -43,34 +44,37 @@ const SignIn = () => {
     }
   }
   return (
-    <div className='estate__signin back-darkest'>
-      {/* <div className='estate__signin-content'> */}
-      <h1 className='estate__signin-content_title text-white text-center font-semibold fs-30'>Sign In</h1>
-      <form onSubmit={handleSubmit} className='estate__signin-content_form'>
-        <div className='estate__signin-content_form-box'>
-          <input type="email" name='email' id="email" className='fs-16 text-white' onChange={handleChange} required  />
-          <label>Email</label>
+    <>
+      <Header />
+      <div className='estate__signin back-darkest'>
+        {/* <div className='estate__signin-content'> */}
+        <h1 className='estate__signin-content_title text-white text-center font-semibold fs-30'>Sign In</h1>
+        <form onSubmit={handleSubmit} className='estate__signin-content_form'>
+          <div className='estate__signin-content_form-box'>
+            <input type="email" name='email' id="email" className='fs-16 text-white' onChange={handleChange} required  />
+            <label>Email</label>
+          </div>
+          <div className='estate__signin-content_form-box'>
+            <input type="password" name='password' id="password" className='fs-16 text-white' onChange={handleChange} required  />
+            <label>Password</label>
+          </div>
+          <div className='estate__signin-content_form-box_submit'>
+            <button disabled={loading} className='text-white fs-16 signup-in-button disabled:text-gray-700'>
+            {loading ? 'loading...' : 'Sign In'}
+            </button>
+          </div>
+          <div className='estate__signin-content_form-box_oauth'>
+            <OAuth />
+          </div>
+        </form>
+        {/* </div> */}
+        <div className='text-center my-2 flex justify-center items-center'>
+          <p className='text-white my-1 italic'>Dont have an account?</p>
+          <Link to='/sign-up' className=' italic color-light-blue'>Sign up</Link>
         </div>
-        <div className='estate__signin-content_form-box'>
-          <input type="password" name='password' id="password" className='fs-16 text-white' onChange={handleChange} required  />
-          <label>Password</label>
-        </div>
-        <div className='estate__signin-content_form-box_submit'>
-          <button disabled={loading} className='text-white fs-16 signup-in-button disabled:text-gray-700'>
-          {loading ? 'loading...' : 'Sign In'}
-          </button>
-        </div>
-        <div className='estate__signin-content_form-box_oauth'>
-          <OAuth />
-        </div>
-      </form>
-      {/* </div> */}
-      <div className='text-center my-2 flex justify-center items-center'>
-        <p className='text-white my-1 italic'>Dont have an account?</p>
-        <Link to='/sign-up' className=' italic color-light-blue'>Sign up</Link>
+        {error && <p className='text-red-500 mt-5'> { error } </p>}
       </div>
-      {error && <p className='text-red-500 mt-5'> { error } </p>}
-    </div>
+    </>
   )
 }
 
