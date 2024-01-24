@@ -12,6 +12,7 @@ background-size: cover; background-color: rgba(0, 0, 0, 0.35);}
 .home-header{background-color: transparent;position: fixed;width: 100%;box-shadow: none !important;z-index: 11;
 padding: 8px 0;}
 .fixed-header .home-header{background-color: var(--color-back);box-shadow: 0 0 10px 0;}
+.main-home-header .popup{margin-top: 80px;}
 .main-image-cont .text{position: absolute;
     left: 50%;
     top: 50%;

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 export default function Header({ homePage }) {
   const headerClassName = homePage ? 'home-header' : 'default-header estate__header-upper shadow-md py-1 ';
+  const headerHome = homePage ? 'main-home-header estate__header' : 'estate__header';
   const { currentUser } = useSelector(state => state.user)
   const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
@@ -47,7 +48,7 @@ export default function Header({ homePage }) {
 
   return (
     <header className={isHeaderFixed ? 'fixed-header' : ''}>
-        <div className='estate__header'>
+        <div className={headerHome}>
             <div className={headerClassName}>
               <div className='main-container flex items-center justify-between'>
                 <Link to='./'>
@@ -86,7 +87,7 @@ export default function Header({ homePage }) {
                     }
                     <div className='estate__header-mobile'>
                       <img src={menuOpen ? "/src/assets/images/close-menu-burger.svg" : "/src/assets/images/menu-burger.svg"} alt="menu-burger" className='menu-burger'  onClick={() => setMenuOpen(!menuOpen)}/>
-                      <div className={menuOpen ? 'estate__header-mobile_links flex flex-col items-center justify-center flex-1' : 'display-none estate__header-mobile_links'}>
+                      <div className={menuOpen ? 'estate__header-mobile_links flex flex-col items-center justify-center flex-1 scale-up-center' : 'display-none estate__header-mobile_links scale-up-center'}>
                         <Link to='/' className='fs-18 pointer color-basic-text'>Home</Link>
                         <Link to='/about' className='fs-18 pointer color-basic-text'>About</Link>
                         {/* <Link to='./offers' className='fs-18 pointer color-basic-text'>Offers</Link> */}
