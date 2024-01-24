@@ -207,7 +207,7 @@ const Profile = ({ openPopUp, closePopUp }) => {
                 {loading ? 'Loading...' : 'Update'}
               </button>
             </div>
-              <Link to={"create-listing"} className='flex justify-center text-black fs-16 update-button disabled:text-gray-700'>
+              <Link to={"/create-listing"} className='flex justify-center text-black fs-16 update-button disabled:text-gray-700'>
                 Create Listing
               </Link>
           </form>
