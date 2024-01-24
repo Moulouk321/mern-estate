@@ -17,6 +17,7 @@ import {
 } from 'react-icons/fa';
 import './listing.css'
 import Contact from '../../components/Contact';
+import Header from "../../components/header/Header";
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
@@ -55,6 +56,7 @@ export default function Listing() {
 
   return (
     <main>
+      <Header />
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
       {error && (
         <p className='text-center my-7 text-2xl'>Something went wrong!</p>

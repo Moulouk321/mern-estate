@@ -4,14 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import './header.css'
 import Profile from '../../pages/profile/Profile';
+import PropTypes from 'prop-types';
 
-export default function Header() {
+export default function Header({ homePage }) {
+  const headerClassName = homePage ? 'home-header' : 'default-header estate__header-upper shadow-md py-1 ';
   const { currentUser } = useSelector(state => state.user)
   const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
   const [openPopup, setOpenPopup] = useState(false)
   const HandleRemovePopUp = () => setOpenPopup(false)
   const [isHeaderFixed, setIsHeaderFixed] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +48,7 @@ export default function Header() {
   return (
     <header className={isHeaderFixed ? 'fixed-header' : ''}>
         <div className='estate__header'>
-            <div className='estate__header-upper shadow-md back-original py-1'>
+            <div className={headerClassName}>
               <div className='main-container flex items-center justify-between'>
                 <Link to='./'>
                   <h1 className='estate__header-upper_logo font-bold fs-40 flex justify-start'>
@@ -66,36 +69,40 @@ export default function Header() {
                 <div className='estate__header-upper_links flex items-center'>
                   <div className='flex items-center justify-between links-desktop py-2'>
                     <div className='estate__header-lower_links flex items-center justify-center flex-1'>
-                      <Link to='./' className='fs-18 pointer color-basic-text'>Home</Link>
-                      <Link to='./about' className='fs-18 pointer color-basic-text'>About</Link>
+                      <Link to='/' className='fs-18 pointer color-basic-text'>Home</Link>
+                      <Link to='/about' className='fs-18 pointer color-basic-text'>About</Link>
                       {/* <Link to='./offers' className='fs-18 pointer color-basic-text'>Offers</Link> */}
                     </div>
                   </div>
                   {/* <Link to='./sign-up' className='fs-18 pointer'>Sign Up</Link> */}
                   {/* <Link to='./profile' className='fs-18 pointer'> */}
                     { currentUser ? (
-                      <img src={ currentUser.avatar } alt="profile" onClick={() => 
+                      <img src={ currentUser.avatar } alt="profile" className='profile' onClick={() => 
                         !openPopup ?
                         setOpenPopup(true) : setOpenPopup(false)
                       }/>
                     ) :
                     <Link to='./sign-in' className='fs-18 pointer'><span>Sign In</span></Link>
                     }
+                    <div className='estate__header-mobile'>
+                      <img src={menuOpen ? "/src/assets/images/close-menu-burger.svg" : "/src/assets/images/menu-burger.svg"} alt="menu-burger" className='menu-burger'  onClick={() => setMenuOpen(!menuOpen)}/>
+                      <div className={menuOpen ? 'estate__header-mobile_links flex flex-col items-center justify-center flex-1' : 'display-none estate__header-mobile_links'}>
+                        <Link to='/' className='fs-18 pointer color-basic-text'>Home</Link>
+                        <Link to='/about' className='fs-18 pointer color-basic-text'>About</Link>
+                        {/* <Link to='./offers' className='fs-18 pointer color-basic-text'>Offers</Link> */}
+                      </div>
+                    </div>
                   {/* </Link> */}
                 </div>
               </div>
             </div>
-            <div className='estate__header-lower-mobile shadow-lg'>
-              <div className='main-container flex items-center justify-between py-2'>
-                <div className='estate__header-lower_links flex items-center justify-center flex-1'>
-                  <Link to='./' className='fs-18 mx-4 pointer color-basic-text'>Home</Link>
-                  <Link to='./about' className='fs-18 mx-4 pointer color-basic-text'>About</Link>
-                  <Link to='./offers' className='fs-18 mx-4 pointer color-basic-text'>Offers</Link>
-                </div>
-              </div>
-            </div>
+            
             <Profile openPopUp={openPopup} closePopUp={HandleRemovePopUp} />
         </div>
     </header>
   )
+}
+
+Header.propTypes = {
+  homePage: PropTypes.bool.isRequired,
 }

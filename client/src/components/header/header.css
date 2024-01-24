@@ -2,15 +2,22 @@
 .estate__header-upper_logo{flex: 0.2;text-shadow: 2px 2px 2px black;}
 .header-form{border: 1px solid var(--color-dark);}
 .estate__header-upper_links a{margin-right: 1rem;}
-.estate__header-upper_links img{border-radius: 50%;width: 35px;height: 35px;object-fit: cover;cursor: pointer;}
-.estate__header-lower-mobile{display: none;}
+.estate__header-upper_links img.profile{border-radius: 50%;width: 35px;height: 35px;object-fit: cover;cursor: pointer;}
+.estate__header-mobile_links{background: var(--color-back);border: 1px solid #000;border-radius: 10px;
+position: absolute;right: 5%;margin-top: 20px;gap: 6px;padding: 8px;}
+.display-block{display: block;}
+.display-none{display: none;}
+.estate__header .estate__header-upper{background: var(--color-back);}
+.estate__header-mobile{display: none;}
+.menu-burger{width: 25px;cursor: pointer;}
 
 @media screen and (max-width:767px){
     .search-input{width: 150px !important;}
 }
 
 @media screen and (max-width:615px){
-    .estate__header-lower-mobile{display: block;}
+    .estate__header-mobile{display: block;}
+    .estate__header-upper_links img.profile{margin-right: 15px;}
     .links-desktop{display: none !important;}
 }
 
