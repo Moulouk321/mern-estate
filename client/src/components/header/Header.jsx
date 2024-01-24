@@ -86,7 +86,7 @@ export default function Header({ homePage }) {
                     <Link to='/sign-in' className='fs-18 pointer'><span>Sign In</span></Link>
                     }
                     <div className='estate__header-mobile'>
-                      <img src={menuOpen ? "/src/assets/images/close-menu-burger.svg" : "/src/assets/images/menu-burger.svg"} alt="menu-burger" className='menu-burger'  onClick={() => setMenuOpen(!menuOpen)}/>
+                      <img src={menuOpen ? "https://static.thenounproject.com/png/2971446-200.png" : "https://icon-library.com/images/hamburger-menu-icon-svg/hamburger-menu-icon-svg-17.jpg"} alt="menu-burger" className='menu-burger'  onClick={() => setMenuOpen(!menuOpen)}/>
                       <div className={menuOpen ? 'estate__header-mobile_links flex flex-col items-center justify-center flex-1 scale-up-center' : 'display-none estate__header-mobile_links scale-up-center'}>
                         <Link to='/' className='fs-18 pointer color-basic-text'>Home</Link>
                         <Link to='/about' className='fs-18 pointer color-basic-text'>About</Link>

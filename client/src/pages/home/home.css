@@ -27,6 +27,7 @@ padding: 8px 0;}
 
 @media screen and (max-width:767px){
     .cards .card{width: 48% !important;}
+    .main-image-cont .text{left: 38%;}
 }
 
 @media screen and (max-width:500px){
