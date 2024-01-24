@@ -51,7 +51,7 @@ export default function Header({ homePage }) {
         <div className={headerHome}>
             <div className={headerClassName}>
               <div className='main-container flex items-center justify-between'>
-                <Link to='./'>
+                <Link to='/'>
                   <h1 className='estate__header-upper_logo font-bold fs-40 flex justify-start'>
                     <span className='color-text'>MK</span>
                     <span className='color-text_back'>Estate</span>
@@ -83,7 +83,7 @@ export default function Header({ homePage }) {
                         setOpenPopup(true) : setOpenPopup(false)
                       }/>
                     ) :
-                    <Link to='./sign-in' className='fs-18 pointer'><span>Sign In</span></Link>
+                    <Link to='/sign-in' className='fs-18 pointer'><span>Sign In</span></Link>
                     }
                     <div className='estate__header-mobile'>
                       <img src={menuOpen ? "/src/assets/images/close-menu-burger.svg" : "/src/assets/images/menu-burger.svg"} alt="menu-burger" className='menu-burger'  onClick={() => setMenuOpen(!menuOpen)}/>
