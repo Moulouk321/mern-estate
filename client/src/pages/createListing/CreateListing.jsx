@@ -227,6 +227,7 @@ export default function CreateListing() {
                 <input
                   type='number'
                   id='bedrooms'
+                  onChange={handleChange}
                   value={formData.bedrooms}
                   min='1'
                   max='10'

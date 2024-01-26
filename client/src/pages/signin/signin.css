@@ -26,7 +26,7 @@
 }
 @media screen and (max-width:520px){
     .estate__signin{width: 90%;padding: 20px;}
-    .estate__signin{background-color: transparent !important;box-sizing: unset;box-shadow: none;border-radius: 0%;}
+    .estate__signin{box-sizing: unset;box-shadow: none;}
 }
 
 

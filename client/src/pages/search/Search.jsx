@@ -224,10 +224,10 @@ export default function Search() {
                 id='sort_order'
                 className='border rounded-lg p-3'
               >
-                <option value='regularPrice_desc fs-16'>Price high to low</option>
-                <option value='regularPrice_asc fs-16'>Price low to hight</option>
-                <option value='createdAt_desc fs-16'>Latest</option>
-                <option value='createdAt_asc fs-16'>Oldest</option>
+                <option value='regularPrice_desc'>Price high to low</option>
+                <option value='regularPrice_asc'>Price low to hight</option>
+                <option value='createdAt_desc'>Latest</option>
+                <option value='createdAt_asc'>Oldest</option>
               </select>
             </div>
             <button className='update-button fs-16'>
